@@ -13,25 +13,24 @@ Gradle
 
 ### 이론
 ```
-MySQL 5.7부터 공간 데이터 타입을 지원합니다. 이것을 활용해 위치 데이터를 인덱싱할 수 있습니다. 우선 본격적인 실습에 앞서 알아두어야 할 용어부터 정리하고 넘어가겠습니다.
+MySQL 5.7부터 공간 데이터 타입을 지원
 
-MBR
+MBR(Minimum Bounding Rectangles)
+최소 경계 사각형이라는 뜻 
+지도 상의 임의의 사각형 구역
+공간 관련 연산시 사용하는 용어
 
-Minimum Bounding Rectangles의 약자로, 최소 경계 사각형이라는 뜻 입니다.
-지도 상의 임의의 사각형 구역이라고 생각하시면 됩니다.
-공간 관련 연산시 사용하는 용어입니다.
 POINT
+지도 상의 경도, 위도 값을 표현하는 객체
+MySQL의 Spatial Data Type 중 하나
 
-지도 상의 경도, 위도 값을 표현하는 객체입니다.
-MySQL의 Spatial Data Type 중 하나입니다.
 LINESTRING
+지도 상의 하나의 선을 의미하며, 일련의 Point들로 이루어진 객체
+MySQL의 Spatial Data Type
 
-지도 상의 하나의 선을 의미하며, 일련의 Point들로 이루어진 객체입니다.
-MySQL의 Spatial Data Type 중 하나입니다.
-
-# 기준 좌표 : x,y
-# 기준 좌표의 북동쪽으로 nKM에 위치한 좌표 : x1, y1
-# 기준 좌표의 남서쪽으로 nKM에 위치한 좌표 : x2, y2
+기준 좌표 : x,y
+기준 좌표의 북동쪽으로 nKM에 위치한 좌표 : x1, y1
+기준 좌표의 남서쪽으로 nKM에 위치한 좌표 : x2, y2
 
 SELECT *
 FROM store as s
@@ -41,10 +40,9 @@ SQL 설명
 
 MBRContains(g1, g2) : g1의 MBR에 g2의 MBR이 포함되는지 검사하는 함수
 ST_LINESTRINGFROMTEXT : WKT 표현식으로 표현된 문자열을 이용해 LINESTRING 객체를 만드는 함수
-그림으로 보면 이해가 쉽습니다.
 
-기준 위치로부터 nKM 떨어진 북동쪽 및 남서쪽 좌표를 이은 대각선(LINESTRING)의 MBR은 직사각형입니다.
-따라서 MBRContains(g1, g2)는 g1의 직사각형안에 g2 데이터가 포함되는지 찾는 연산입니다.
+기준 위치로부터 nKM 떨어진 북동쪽 및 남서쪽 좌표를 이은 대각선(LINESTRING)의 MBR은 직사각형
+따라서 MBRContains(g1, g2)는 g1의 직사각형안에 g2 데이터가 포함되는지 찾는 연산 true / false
 ```
 
 ![1.png](1.png)
@@ -78,7 +76,7 @@ limit 20;
 ```
 독산역 기준 반경 1km 탐색 count 미만 조회시 다시 조회
 ```
-![2.png](1.png)
+![2.png](2.png)
 
 ```aidl
 {
